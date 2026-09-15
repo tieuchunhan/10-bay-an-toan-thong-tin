@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nhận giấy chứng nhận</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#071b34,#173f62);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;color:#172033}
+.card{max-width:760px;width:100%;background:#fff;border-radius:24px;padding:34px;box-shadow:0 25px 70px #0006;text-align:center}
+.icon{font-size:58px}h1{font-size:32px;margin:8px 0}.score{font-size:20px;color:#475569;margin:16px 0 25px}.score b{font-size:38px;color:#1464d2}
+label{display:block;text-align:left;font-weight:700;margin:14px 0 7px}input{width:100%;padding:15px;border:2px solid #d7dee8;border-radius:12px;font-size:17px}button{width:100%;padding:16px;border:0;border-radius:12px;background:#1464d2;color:white;font-size:17px;font-weight:700;margin-top:14px;cursor:pointer}
+.note{font-size:13px;color:#64748b;margin-top:13px}.hidden{display:none}.reveal{background:#fff3f3;border:2px solid #ef4444;color:#7f1d1d;border-radius:18px;padding:25px;text-align:left}.reveal h2{text-align:center;color:#dc2626;font-size:30px}.lesson{background:white;border-radius:14px;padding:18px;margin-top:16px}.lesson p:last-child{text-align:center;font-size:22px;font-weight:800}.again{background:#eef3f8;color:#1e3a5f}
+.footer{font-size:13px;color:#718096;margin-top:20px}
+</style></head>
+<body><div class="card">
+<div id="normal">
+<div class="icon">🎉</div><h1>Chúc mừng bạn đã hoàn thành!</h1>
+<div class="score">Kết quả bài kiểm tra của bạn<br><b id="score">--/10</b></div>
+<div id="qualified" class="hidden">
+<p>🏆 Bạn đủ điều kiện nhận <b>GIẤY CHỨNG NHẬN HOÀN THÀNH</b>.</p>
+<label for="email">Nhập email để nhận giấy chứng nhận:</label>
+<input id="email" type="email" autocomplete="off" placeholder="example@email.com">
+<button onclick="claim()">📩 NHẬN GIẤY CHỨNG NHẬN</button>
+<div class="note">Thông tin nhập tại đây chỉ phục vụ mô phỏng đào tạo và không được gửi đi.</div>
+</div>
+<div id="notQualified" class="hidden">
+<p>Bạn chưa đạt điều kiện nhận giấy chứng nhận.</p>
+<button class="again" onclick="restart()">↻ Làm lại bài kiểm tra</button>
+</div>
+</div>
+<div id="reveal" class="hidden">
+<div class="reveal"><h2>⚠️ KHOAN!</h2>
+<p style="font-size:20px">Bạn vừa cung cấp địa chỉ email để nhận một phần thưởng mà <b>chưa xác minh nguồn gửi</b>.</p>
+<p style="font-size:24px;font-weight:800;text-align:center">🔴 BẠN VỪA DÍNH BẪY!</p>
+<div class="lesson"><h3>ĐÂY LÀ BÀI HỌC</h3>
+<p>Điều nguy hiểm không phải lúc nào cũng là một đường link đáng ngờ. Đôi khi nó là một <b>lời mời rất hấp dẫn</b> khiến chúng ta hành động quá nhanh.</p>
+<p><b>ĐỪNG VỘI NHẬP THÔNG TIN CHỈ VÌ “PHẦN THƯỞNG”.</b></p>
+<p>DỪNG → KIỂM TRA → XÁC MINH</p></div>
+<p style="font-size:13px;color:#64748b">Đây là mô phỏng. Email vừa nhập đã được xóa và không được lưu hoặc truyền đi.</p>
+<button class="again" onclick="restart()">↻ Thử lại từ đầu</button>
+</div></div>
+<div class="footer">Thực hiện bởi Lan Phương - Công an phường B'Lao</div>
+</div>
+<script>
+const score=Math.min(Number(localStorage.getItem('bayScore')||0),10);
+document.getElementById('score').textContent=score+'/10';
+if(score>=8) document.getElementById('qualified').classList.remove('hidden');
+else document.getElementById('notQualified').classList.remove('hidden');
+function claim(){
+ const i=document.getElementById('email'),v=i.value.trim();
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){alert('Vui lòng nhập một địa chỉ email hợp lệ.');return}
+ i.value='';
+ document.getElementById('normal').classList.add('hidden');
+ document.getElementById('reveal').classList.remove('hidden');
+}
+function restart(){
+ localStorage.removeItem('bayScore');
+ for(let i=1;i<=11;i++)localStorage.removeItem('bayDone'+i);
+ location.href='index.html';
+}
+</script></body></html>
