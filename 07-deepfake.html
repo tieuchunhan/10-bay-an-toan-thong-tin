@@ -1,25 +1,76 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bẫy 07 – DEEPFAKE CHALLENGE</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#061a35;color:#fff}
-.wrap{max-width:900px;margin:auto;padding:18px}.card{background:#fff;color:#101828;border-radius:20px;padding:24px;box-shadow:0 15px 50px #0006}
-.badge{display:inline-block;background:#d71920;color:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800}
-h1{font-size:31px;line-height:1.1;color:#092e62;margin:14px 0 7px}h2{color:#092e62}
-p,li{line-height:1.5}.danger{background:#fff1f0;border-left:6px solid #d71920;padding:14px;border-radius:10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin:18px 0}
-.choice{background:#f4f7fb;border:2px solid #d7deea;border-radius:14px;padding:17px;cursor:pointer;font-weight:700;font-size:16px;text-align:left}
-.choice:hover{border-color:#0867d8}.choice:disabled{opacity:.55;cursor:not-allowed}
-.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer;margin:5px}.primary{background:#0867d8;color:#fff}.red{background:#d71920;color:#fff}.gray{background:#e8edf3;color:#111}
-.result{display:none;margin-top:18px;padding:18px;border-radius:16px;background:#eef6ff}.result.bad{background:#fff1f0}.result.good{background:#ecfdf3}
-.big{font-size:25px;font-weight:900;color:#d71920}.good .big{color:#067647}
-.progress{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:12px 0}.bar{height:100%;width:0;background:#0867d8;transition:.35s}
-.score{font-weight:900;color:#092e62}.small{font-size:13px;color:#667085}
-.fakebox,.email{border:1px solid #ccd5e0;border-radius:14px;padding:18px;background:#fff}.fakebox input{width:100%;padding:12px;margin:7px 0;border:1px solid #b8c2cf;border-radius:8px}
-.mono{font-family:Consolas,monospace;background:#101828;color:#fff;padding:14px;border-radius:10px}
-.phone{max-width:360px;margin:auto;background:#111;color:#fff;border-radius:30px;padding:16px}.screen{background:#f7f7f7;color:#111;border-radius:22px;padding:18px;min-height:330px}
-.footer{text-align:center;color:#cbd8e8;font-size:13px;padding:15px}
-.hero{text-align:center;padding:12px}.hero .shield{font-size:64px}.scorecard{font-size:38px;font-weight:900;color:#092e62;text-align:center}
-a{text-decoration:none;color:inherit}@media(max-width:600px){h1{font-size:27px}.wrap{padding:9px}.card{padding:18px}}
-.home-btn{display:inline-block;background:#eef3f8;color:#173f78;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:800;margin:8px 0}.home-wrap{text-align:center;margin-top:18px}</style></head><body><div class="wrap"><div class="card"><span class="badge">BẪY 07/10 • THỬ THÁCH</span><h1>DEEPFAKE CHALLENGE</h1><p>AI hay người thật? Đừng dùng mắt và tai làm bằng chứng duy nhất.</p>
-<div class="progress"><div id="bar" class="bar"></div></div><div class="score">Điểm hiện tại: <span id="score">0</span>/10</div><div class='grid'><div class='fakebox'><h2>🎥 VIDEO A</h2><div style='font-size:60px;text-align:center'>🙂</div><button class='choice' onclick='answer(true)'>Chọn A</button></div><div class='fakebox'><h2>🎥 VIDEO B</h2><div style='font-size:60px;text-align:center'>🧑‍💼</div><button class='choice' onclick='answer(true)'>Chọn B</button></div></div>
-<div id="result" class="result"><div id="headline" class="big"></div><p><b>Bài học:</b> Cả hai đều là mô phỏng. Với video/giọng nói đáng ngờ, xác minh qua kênh khác.</p><br><button class="btn gray" onclick="location.reload()">↩ Thử lại</button><a href="index.html"><button class="btn primary">🏠 Bảng điểm</button></a></div></div><div class="footer">10 BẪY AN TOÀN THÔNG TIN • Thực hiện bởi Lan Phương - Công an phường B'Lao</div></div><script>
-function answer(ok){localStorage.setItem('bayDone7','1');let total=Number(localStorage.getItem("bayScore")||0)+(ok?1:0);localStorage.setItem("bayScore",total);document.querySelectorAll(".choice").forEach(b=>b.disabled=true);document.getElementById("score").textContent=total;document.getElementById("bar").style.width=(total*10)+"%";let r=document.getElementById("result");r.style.display="block";document.getElementById("headline").textContent=ok?"✅ BẠN ĐÃ NHẬN DIỆN ĐÚNG":"⚠️ BẠN VỪA DÍNH BẪY – ĐÂY LÀ BÀI HỌC";r.className="result "+(ok?"good":"bad")}
-</script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tình huống 7 – Deepfake</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#071b34,#123e68);color:#172033;padding:18px}
+.wrap{max-width:980px;margin:auto}.card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 20px 60px #0005}
+.top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.tag{background:#173f78;color:#fff;border-radius:10px;padding:10px 14px;font-weight:800}
+h1{font-size:30px;margin:0}.intro{background:#eaf3ff;border-radius:15px;padding:15px;margin:18px 0;color:#18395d}
+.images{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pic{width:100%;height:auto;display:block;border-radius:15px;border:1px solid #d9e2ec}
+.choice{margin-top:18px;background:#f5f8fc;border-radius:16px;padding:18px}
+.opt{display:block;padding:14px;border:2px solid #d7e0eb;border-radius:12px;margin:10px 0;cursor:pointer;font-size:18px;font-weight:700}
+.opt input{margin-right:10px;transform:scale(1.25)}
+.check{display:block;width:min(430px,100%);margin:18px auto 0;padding:15px;border:0;border-radius:12px;background:#1464d2;color:white;font-size:17px;font-weight:800;cursor:pointer}
+.feedback{display:none;margin-top:20px;border-radius:17px;padding:20px;background:#fff1f1;border:2px solid #ef4444}
+.feedback h2{color:#c81e1e;margin-top:0}.lesson{background:#fff;border-radius:13px;padding:16px;margin-top:14px}
+.home{display:block;width:max-content;margin:18px auto 0;padding:12px 20px;background:#eef3f8;color:#173f78;border-radius:11px;text-decoration:none;font-weight:800}
+.footer{text-align:center;color:#718096;font-size:13px;margin-top:18px}
+@media(max-width:700px){.images{grid-template-columns:1fr}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<div class="top"><div class="tag">TÌNH HUỐNG 7</div><h1>DEEPFAKE – THẬT HAY GIẢ?</h1></div>
+<p style="font-size:18px">Hãy quan sát kỹ <b>2 hình ảnh</b> dưới đây. Theo bạn, đây là hình ảnh AI hay người thật?</p>
+<div class="intro">🤖 Hai hình ảnh được lấy trực tiếp từ kho ảnh của bài tập trên GitHub Pages. Hãy quan sát trước khi lựa chọn.</div>
+
+<div class="images">
+  <div><img class="pic" src="deepfake-hinh-1.png" alt="Hình ảnh AI số 1"><p style="text-align:center;font-weight:700">Hình 1</p></div>
+  <div><img class="pic" src="deepfake-hinh-2.png" alt="Hình ảnh AI số 2"><p style="text-align:center;font-weight:700">Hình 2</p></div>
+</div>
+
+<div class="choice">
+<h3>👉 Theo bạn, 2 hình ảnh trên là:</h3>
+<label class="opt"><input type="radio" name="answer" value="A"> A. AI</label>
+<label class="opt"><input type="radio" name="answer" value="B"> B. Người thật</label>
+<button class="check" onclick="checkAnswer()">✓ KIỂM TRA ĐÁP ÁN</button>
+</div>
+
+<div id="feedback" class="feedback">
+<h2 id="title"></h2><div id="body"></div>
+</div>
+<a class="home" href="index.html">🏠 BẢNG ĐIỂM</a>
+</div>
+<div class="footer">10 BẪY AN TOÀN THÔNG TIN • Thực hiện bởi Lan Phương - Công an phường B'Lao</div>
+</div>
+
+<script>
+function checkAnswer(){
+ const selected=document.querySelector('input[name="answer"]:checked');
+ if(!selected){alert('Hãy chọn A hoặc B trước khi kiểm tra.');return;}
+ const fb=document.getElementById('feedback'),title=document.getElementById('title'),body=document.getElementById('body');
+ if(selected.value==='A'){
+   title.textContent='✅ CHÍNH XÁC! ĐÁP ÁN: A. AI';
+   body.innerHTML='<p><b>Cả 2 hình ảnh đều là hình ảnh do AI tạo ra.</b></p><div class="lesson"><b>💡 BÀI HỌC:</b><ul><li>Hình ảnh AI ngày càng giống ảnh người thật.</li><li>Không nên kết luận chỉ dựa vào cảm giác “nhìn rất thật”.</li><li>Hãy kiểm tra nguồn, ngữ cảnh và đối chiếu thông tin.</li></ul><p style="text-align:center;font-size:20px"><b>THẤY HỢP LÝ ≠ CHẮC CHẮN LÀ THẬT</b></p></div>';
+   if(localStorage.getItem('bayDone7')!=='1'){
+     let s=Math.min(Number(localStorage.getItem('bayScore')||0),10);
+     localStorage.setItem('bayScore',String(Math.min(s+1,10)));
+     localStorage.setItem('bayDone7','1');
+   }
+ }else{
+   title.textContent='⚠️ CHƯA CHÍNH XÁC!';
+   body.innerHTML='<p>Đáp án đúng là <b>A. AI</b>. Cả hai hình ảnh đều do AI tạo ra.</p><div class="lesson"><b>💡 BÀI HỌC:</b> Khi chưa chắc chắn, hãy kiểm tra nguồn và xác minh trước khi tin hoặc chia sẻ.</div>';
+   localStorage.setItem('bayDone7','1');
+ }
+ document.querySelectorAll('.opt input').forEach(x=>x.disabled=true);
+ document.querySelector('.check').disabled=true;
+ fb.style.display='block';
+}
+</script>
+</body>
+</html>
