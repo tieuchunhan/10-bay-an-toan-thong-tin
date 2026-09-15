@@ -18,8 +18,32 @@ p,li{line-height:1.5}.danger{background:#fff1f0;border-left:6px solid #d71920;pa
 .footer{text-align:center;color:#cbd8e8;font-size:13px;padding:15px}
 .hero{text-align:center;padding:12px}.hero .shield{font-size:64px}.scorecard{font-size:38px;font-weight:900;color:#092e62;text-align:center}
 a{text-decoration:none;color:inherit}@media(max-width:600px){h1{font-size:27px}.wrap{padding:9px}.card{padding:18px}}
+
+.status{display:block;margin-top:9px;font-size:13px;font-weight:800;color:#667085}
+.choice.done{border-color:#067647;background:#ecfdf3}
+.choice.done .status{color:#067647}
+.menu-title{font-size:15px;font-weight:800;color:#475467;margin:4px 0 10px}
 </style></head><body><div class="wrap"><div class="card"><div class="hero"><div class="shield">🛡️</div><span class="badge">TẬP HUẤN THỰC CHIẾN</span><h1>10 BẪY AN TOÀN THÔNG TIN</h1><p>Đừng học bằng cách nghe – hãy học bằng cách trải nghiệm.</p></div>
 <div class="danger"><b>Quy tắc:</b> Không nhập mật khẩu, OTP, thông tin cá nhân hoặc dữ liệu thật.</div>
 <div class="scorecard"><span id="total">0</span>/10</div><p style="text-align:center">Điểm của bạn</p><div class="progress"><div id="bar" class="bar"></div></div>
-<div class="grid"><a class="choice" href="01-qr.html"><b>BẪY 01</b><br>QUÉT QR – QUYỀN CAMERA</a><a class="choice" href="02-dang-nhap.html"><b>BẪY 02</b><br>ĐĂNG NHẬP GIẢ</a><a class="choice" href="03-email.html"><b>BẪY 03</b><br>EMAIL KHẨN</a><a class="choice" href="04-file.html"><b>BẪY 04</b><br>FILE “PDF” GIẢ</a><a class="choice" href="05-otp.html"><b>BẪY 05</b><br>OTP</a><a class="choice" href="06-gia-danh.html"><b>BẪY 06</b><br>GIẢ DANH LÃNH ĐẠO</a><a class="choice" href="07-deepfake.html"><b>BẪY 07</b><br>DEEPFAKE CHALLENGE</a><a class="choice" href="08-quishing.html"><b>BẪY 08</b><br>QR PHISHING – QUISHING</a><a class="choice" href="09-usb.html"><b>BẪY 09</b><br>USB LẠ</a><a class="choice" href="10-quyen.html"><b>BẪY 10</b><br>CẤP QUYỀN ỨNG DỤNG</a></div><div style="text-align:center"><button class="btn red" onclick="localStorage.removeItem('bayScore');location.reload()">🔄 Xóa điểm & làm lại</button></div>
-<div class="danger"><h2>🎯 NHẤP VÀO ĐÂY ĐỂ NHẬN CHỨNG NHẬN HOÀN THÀNH KHÓA TẬP HUẤN</h2><p>Nhấp vào đây để nhận chứng nhận hoàn thành khóa tập huấn.</p><a href="chung-nhan.html"><button class="btn primary">Thử Chứng nhận hoàn thành</button></a></div></div><div class="footer">10 BẪY AN TOÀN THÔNG TIN • Thực hiện bởi Lan Phương - Công an phường B'Lao</div></div><script>let s=Number(localStorage.getItem('bayScore')||0);document.getElementById('total').textContent=s;document.getElementById('bar').style.width=(s*10)+'%';</script></body></html>
+<div class="grid"><a id="bay1" class="choice" href="01-qr.html"><b>BẪY 01</b><br>QUÉT QR – BẪY NHẬN THỨC<span class="status" id="st1">○ Chưa thực hiện</span></a><a id="bay2" class="choice" href="02-dang-nhap.html"><b>BẪY 02</b><br>ĐĂNG NHẬP GIẢ<span class="status" id="st2">○ Chưa thực hiện</span></a><a id="bay3" class="choice" href="03-email.html"><b>BẪY 03</b><br>EMAIL KHẨN<span class="status" id="st3">○ Chưa thực hiện</span></a><a id="bay4" class="choice" href="04-file.html"><b>BẪY 04</b><br>FILE “PDF” GIẢ<span class="status" id="st4">○ Chưa thực hiện</span></a><a id="bay5" class="choice" href="05-otp.html"><b>BẪY 05</b><br>OTP<span class="status" id="st5">○ Chưa thực hiện</span></a><a id="bay6" class="choice" href="06-gia-danh.html"><b>BẪY 06</b><br>GIẢ DANH LÃNH ĐẠO<span class="status" id="st6">○ Chưa thực hiện</span></a><a id="bay7" class="choice" href="07-deepfake.html"><b>BẪY 07</b><br>DEEPFAKE CHALLENGE<span class="status" id="st7">○ Chưa thực hiện</span></a><a id="bay8" class="choice" href="08-quishing.html"><b>BẪY 08</b><br>QR PHISHING – QUISHING<span class="status" id="st8">○ Chưa thực hiện</span></a><a id="bay9" class="choice" href="09-usb.html"><b>BẪY 09</b><br>USB LẠ<span class="status" id="st9">○ Chưa thực hiện</span></a><a id="bay10" class="choice" href="10-quyen.html"><b>BẪY 10</b><br>CẤP QUYỀN ỨNG DỤNG<span class="status" id="st10">○ Chưa thực hiện</span></a></div><div style="text-align:center"><button class="btn red" onclick="resetAll()">🔄 Xóa điểm & làm lại</button></div>
+<div class="danger"><h2>🎯 NHẤP VÀO ĐÂY ĐỂ NHẬN CHỨNG NHẬN HOÀN THÀNH KHÓA TẬP HUẤN</h2><p>Nhấp vào đây để nhận chứng nhận hoàn thành khóa tập huấn.</p><a href="chung-nhan.html"><button class="btn primary">Thử Chứng nhận hoàn thành</button></a></div></div><div class="footer">10 BẪY AN TOÀN THÔNG TIN • Thực hiện bởi Lan Phương - Công an phường B'Lao</div></div><script>
+const totalEl=document.getElementById('total'),barEl=document.getElementById('bar');
+function refresh(){
+  let s=Math.min(Number(localStorage.getItem('bayScore')||0),10);
+  totalEl.textContent=s; barEl.style.width=(s*10)+'%';
+  for(let i=1;i<=10;i++){
+    const card=document.getElementById('bay'+i), st=document.getElementById('st'+i);
+    const done=localStorage.getItem('bayDone'+i)==='1';
+    if(done){card.classList.add('done');st.textContent='✓ Đã thực hiện';}
+    else{card.classList.remove('done');st.textContent='○ Chưa thực hiện';}
+  }
+}
+function resetAll(){
+  localStorage.removeItem('bayScore');
+  for(let i=1;i<=11;i++)localStorage.removeItem('bayDone'+i);
+  refresh();
+}
+refresh();
+window.addEventListener('pageshow',refresh);
+</script></body></html>

@@ -1,23 +1,100 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bẫy 11 – Cái bẫy cuối cùng</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#061a35;color:#fff}
-.wrap{max-width:900px;margin:auto;padding:18px}.card{background:#fff;color:#101828;border-radius:20px;padding:24px;box-shadow:0 15px 50px #0006}
-.badge{display:inline-block;background:#d71920;color:#fff;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800}
-h1{font-size:31px;line-height:1.1;color:#092e62;margin:14px 0 7px}h2{color:#092e62}
-p,li{line-height:1.5}.danger{background:#fff1f0;border-left:6px solid #d71920;padding:14px;border-radius:10px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin:18px 0}
-.choice{background:#f4f7fb;border:2px solid #d7deea;border-radius:14px;padding:17px;cursor:pointer;font-weight:700;font-size:16px;text-align:left}
-.choice:hover{border-color:#0867d8}.choice:disabled{opacity:.55;cursor:not-allowed}
-.btn{border:0;border-radius:12px;padding:13px 18px;font-weight:800;cursor:pointer;margin:5px}.primary{background:#0867d8;color:#fff}.red{background:#d71920;color:#fff}.gray{background:#e8edf3;color:#111}
-.result{display:none;margin-top:18px;padding:18px;border-radius:16px;background:#eef6ff}.result.bad{background:#fff1f0}.result.good{background:#ecfdf3}
-.big{font-size:25px;font-weight:900;color:#d71920}.good .big{color:#067647}
-.progress{height:12px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin:12px 0}.bar{height:100%;width:0;background:#0867d8;transition:.35s}
-.score{font-weight:900;color:#092e62}.small{font-size:13px;color:#667085}
-.fakebox,.email{border:1px solid #ccd5e0;border-radius:14px;padding:18px;background:#fff}.fakebox input{width:100%;padding:12px;margin:7px 0;border:1px solid #b8c2cf;border-radius:8px}
-.mono{font-family:Consolas,monospace;background:#101828;color:#fff;padding:14px;border-radius:10px}
-.phone{max-width:360px;margin:auto;background:#111;color:#fff;border-radius:30px;padding:16px}.screen{background:#f7f7f7;color:#111;border-radius:22px;padding:18px;min-height:330px}
-.footer{text-align:center;color:#cbd8e8;font-size:13px;padding:15px}
-.hero{text-align:center;padding:12px}.hero .shield{font-size:64px}.scorecard{font-size:38px;font-weight:900;color:#092e62;text-align:center}
-a{text-decoration:none;color:inherit}@media(max-width:600px){h1{font-size:27px}.wrap{padding:9px}.card{padding:18px}}
-</style></head><body><div class="wrap"><div class="card"><span class="badge">BẪY 11 • CÁI BẪY CUỐI CÙNG</span><h1>🏆 NHẬN CHỨNG NHẬN HOÀN THÀNH</h1><p>Trang mô phỏng yêu cầu mật khẩu email để “nhận chứng nhận”.</p>
-<div class="fakebox"><input id="pw" type="password" placeholder="Mật khẩu email"><button class="btn primary" onclick="trap()">Nhận chứng nhận</button></div>
-<div id="r" class="result bad"><div class="big">🚨 BẠN VỪA DÍNH CÁI BẪY CUỐI CÙNG!</div><p><b>Không nhập mật khẩu thật.</b> Một bài tập không cần dữ liệu xác thực thật.</p><p><b>Quy tắc vàng:</b> DỪNG → KIỂM TRA → XÁC MINH.</p></div><a href="index.html"><button class="btn primary">🏠 Về bảng điểm</button></a></div><div class="footer">10 BẪY AN TOÀN THÔNG TIN • Thực hiện bởi Lan Phương - Công an phường B'Lao</div></div><script>function trap(){document.getElementById('pw').value='';document.getElementById('r').style.display='block'}</script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chứng nhận hoàn thành</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#071b34,#123c63);color:#fff;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:min(760px,100%);background:#fff;color:#162235;border-radius:24px;padding:34px;box-shadow:0 24px 70px rgba(0,0,0,.35);text-align:center}
+.badge{font-size:56px;margin-bottom:8px}.eyebrow{font-size:14px;letter-spacing:2px;color:#53708d;font-weight:700}
+h1{font-size:32px;margin:10px 0 12px}.score{font-size:20px;margin:12px 0 24px}
+.score strong{font-size:34px}
+label{display:block;text-align:left;font-weight:700;margin:0 0 8px}
+input{width:100%;padding:16px;border:2px solid #d9e1ea;border-radius:12px;font-size:17px;outline:none}
+input:focus{border-color:#2f80ed}
+button{border:0;border-radius:12px;padding:15px 24px;font-size:17px;font-weight:700;cursor:pointer;margin-top:14px}
+.primary{background:#1464d2;color:white;width:100%}
+.secondary{background:#eef3f8;color:#234}
+.note{font-size:13px;color:#64748b;margin-top:14px}
+.hidden{display:none}
+.trap{background:#fff3f3;border:2px solid #ef4444;color:#7f1d1d;border-radius:18px;padding:26px}
+.trap h2{font-size:30px;margin:0 0 12px;color:#dc2626}
+.lesson{background:#fff;padding:18px;border-radius:14px;margin-top:18px;text-align:left;color:#222}
+.lesson strong{color:#b91c1c}
+.small{font-size:14px;color:#64748b}
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="eligibility">
+    <div class="badge">🎉</div>
+    <div class="eyebrow">HOÀN THÀNH BÀI KIỂM TRA</div>
+    <h1>Chúc mừng bạn!</h1>
+    <div class="score">Bạn đã hoàn thành bài kiểm tra nhận thức an toàn thông tin.<br>
+      <strong id="score">--/10</strong>
+    </div>
+    <div id="qualified" class="hidden">
+      <p>🏆 Bạn đủ điều kiện nhận <b>GIẤY CHỨNG NHẬN HOÀN THÀNH</b>.</p>
+      <label for="email">Nhập email để nhận giấy chứng nhận:</label>
+      <input id="email" type="email" autocomplete="off" placeholder="example@email.com">
+      <button class="primary" onclick="claim()">📩 NHẬN GIẤY CHỨNG NHẬN</button>
+      <div class="note">Mô phỏng đào tạo: địa chỉ email không được gửi đi hoặc lưu lại.</div>
+    </div>
+    <div id="notQualified" class="hidden">
+      <p>Rất tiếc, bạn chưa đạt điều kiện nhận giấy chứng nhận.</p>
+      <button class="secondary" onclick="restart()">↻ Làm lại bài kiểm tra</button>
+    </div>
+  </div>
+
+  <div id="reveal" class="hidden">
+    <div class="trap">
+      <h2>⚠️ KHOAN!</h2>
+      <p style="font-size:19px">Bạn vừa cung cấp địa chỉ email để nhận một giấy chứng nhận mà <b>chưa xác minh nguồn gửi</b>.</p>
+      <p style="font-size:22px;font-weight:800">🔴 BẠN VỪA DÍNH BẪY!</p>
+      <div class="lesson">
+        <h3>ĐÂY LÀ BÀI HỌC</h3>
+        <p>Bạn không thiếu kiến thức. Bạn vừa gặp đúng một tình huống rất dễ xảy ra ngoài đời: <b>một phần thưởng hấp dẫn khiến chúng ta hành động quá nhanh.</b></p>
+        <p><strong>ĐỪNG VỘI NHẬP THÔNG TIN CHỈ VÌ “PHẦN THƯỞNG”.</strong></p>
+        <p>Trước khi cung cấp email, số điện thoại, mật khẩu hoặc mã OTP:</p>
+        <p style="font-size:22px;text-align:center;font-weight:800">DỪNG → KIỂM TRA → XÁC MINH</p>
+      </div>
+      <p class="small">Địa chỉ email vừa nhập chỉ được dùng để mô phỏng thao tác trên thiết bị và đã được xóa khỏi biểu mẫu; không có dữ liệu nào được gửi đi.</p>
+      <button class="secondary" onclick="restart()">↻ Thử lại từ đầu</button>
+    </div>
+  </div>
+
+  <div style="margin-top:22px;font-size:13px;color:#718096">Thực hiện bởi Lan Phương - Công an phường B'Lao</div>
+</div>
+
+<script>
+const s = Number(localStorage.getItem('bayScore') || 0);
+document.getElementById('score').textContent = Math.min(s,10) + '/10';
+
+if(s >= 8){
+  document.getElementById('qualified').classList.remove('hidden');
+}else{
+  document.getElementById('notQualified').classList.remove('hidden');
+}
+
+function claim(){
+  const input=document.getElementById('email');
+  const email=input.value.trim();
+  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    alert('Vui lòng nhập một địa chỉ email hợp lệ.');
+    return;
+  }
+  input.value='';
+  document.getElementById('eligibility').classList.add('hidden');
+  document.getElementById('reveal').classList.remove('hidden');
+}
+
+function restart(){
+  localStorage.removeItem('bayScore');
+  for(let i=1;i<=11;i++) localStorage.removeItem('bayDone'+i);
+  location.href='index.html';
+}
+</script>
+</body>
+</html>
